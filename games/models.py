@@ -43,7 +43,7 @@ class Game(models.Model):
     title = models.CharField(max_length=130)
     pub_date = models.DateTimeField('date created',auto_now=False, auto_now_add=True)
     modified_date = models.DateTimeField('date created',auto_now=True, auto_now_add=False)
-    short_description = models.CharField('Short teaser',max_length=130,help_text='Example: This is an erotic rythm game. Do not miss this')
+    short_description = models.CharField('Short teaser',max_length=255,help_text='Example: This is an erotic rythm game. Do not miss this')
     long_description = models.TextField('description',help_text='Example: it is a game about ... and it is great because of ... you should try it out. (if you would want to write the story of your life then this is the place)')
     short_credits = models.TextField('credits',blank=True,null=True,help_text='Example: It was made by Tim Garbos and Julie Heyde. Thanks to Patrick for the moaning sound effects')
     video = models.URLField(help_text='Optional video (youtube, vimeo, etc) link',null=True,blank=True)
