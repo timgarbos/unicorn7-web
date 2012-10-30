@@ -6,7 +6,7 @@ from django.template import RequestContext
 
 
 def index(request):
-	games = Game.objects.all().filter(status=Game.Game.LIVE_STATUS)[:6]
+	games = Game.objects.all().filter(status=Game.LIVE_STATUS)[:6]
 	return render_to_response('unicorn/index.html', {'topnav':'index','games':games},context_instance=RequestContext(request))
 
 def about(request):

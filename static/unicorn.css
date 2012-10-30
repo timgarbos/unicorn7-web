@@ -55,7 +55,9 @@ body
 }
 footer
 {
-	height:100px;
+	height:80px;
+	margin-top: -80px;
+	text-align: center;
 
 }
 footer p
@@ -66,12 +68,13 @@ footer p
 
 html, body {
 	height: 100%;
+	min-height: 100%;
 }
 .bgimage {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -80px; /* the bottom margin is the negative value of the footer's height */
+	margin: 0 auto 0px; /* the bottom margin is the negative value of the footer's height */
 }
 
 .play-it
