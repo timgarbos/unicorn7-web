@@ -152,7 +152,7 @@ def submitgameplatforms(request,id="-1"):
 	except Game.DoesNotExist:
 		return render_to_response('unicorn/gamesdoesnotexist.html')
 	if request.user.is_authenticated():
-		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin)):
 			return HttpResponseRedirect(reverse('account_login'))
 
 	if request.method == 'POST': 
@@ -206,7 +206,7 @@ def submitgamecategories(request,id="-1"):
 	except Game.DoesNotExist:
 		return render_to_response('unicorn/gamesdoesnotexist.html')
 	if request.user.is_authenticated():
-		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin)):
 			return HttpResponseRedirect(reverse('account_login'))
 	
 	if request.method == 'POST': 
@@ -238,7 +238,7 @@ def submitgamecontact(request,id="-1"):
 	except Game.DoesNotExist:
 		return render_to_response('unicorn/gamesdoesnotexist.html',)
 	if request.user.is_authenticated():
-		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin)):
 			return HttpResponseRedirect(reverse('account_login'))
 
 	if request.method == 'POST': 
@@ -264,7 +264,7 @@ def submitgamepublish(request,id="-1"):
 	except Game.DoesNotExist:
 		return render_to_response('unicorn/gamesdoesnotexist.html',)
 	if request.user.is_authenticated():
-		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin)):
 			return HttpResponseRedirect(reverse('account_login'))
 
 	if request.method == 'POST': 
@@ -288,7 +288,7 @@ def submitgamepublished(request,id="-1"):
 	except Game.DoesNotExist:
 		return render_to_response('unicorn/gamesdoesnotexist.html',)
 	if request.user.is_authenticated():
-		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin)):
 			return HttpResponseRedirect(reverse('account_login'))
 
 	context['game'] = game;
@@ -304,7 +304,7 @@ def showgame(request,id="-1"):
 	showEdit = False
 	platforms = GamePlatformLink.objects.filter(game=game)
 	if request.user.is_authenticated():
-		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin)):
 			showEdit = True;
 	return render_to_response('unicorn/showgame.html', {'topnav':'showgame','game':game,'platforms':platforms,'showEditOptions':showEdit},context_instance=RequestContext(request))
 
@@ -319,7 +319,7 @@ def editgamebasic(request,id="-1"):
 		return render_to_response('unicorn/gamesdoesnotexist.html')
 
 	if request.user.is_authenticated():
-		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin)):
 			return HttpResponseRedirect(reverse('account_login'))
 
 	if request.method == 'POST': 
@@ -346,7 +346,7 @@ def editgamecontact(request,id="-1"):
 	except Game.DoesNotExist:
 		return render_to_response('unicorn/gamesdoesnotexist.html',)
 	if request.user.is_authenticated():
-		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin)):
 			return HttpResponseRedirect(reverse('account_login'))
 
 	if request.method == 'POST': 
@@ -371,7 +371,7 @@ def editgameplatforms(request,id="-1"):
 	except Game.DoesNotExist:
 		return render_to_response('unicorn/gamesdoesnotexist.html')
 	if request.user.is_authenticated():
-		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin)):
 			return HttpResponseRedirect(reverse('account_login'))
 
 	if request.method == 'POST': 
@@ -424,7 +424,7 @@ def editgamecategories(request,id="-1"):
 	except Game.DoesNotExist:
 		return render_to_response('unicorn/gamesdoesnotexist.html')
 	if request.user.is_authenticated():
-		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin)):
 			return HttpResponseRedirect(reverse('account_login'))
 	
 	if request.method == 'POST': 
