@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load oembed_tags %}
+{% load navigation %}
+
+{% block extra_head %}
+<!-- include CSS & JS files -->
+<!-- CSS file -->
+<link rel="stylesheet" type="text/css" href="/static/js/rating/jRating.jquery.css" media="screen" />
+
+{% endblock %}
+
+
+
+{% block content %}
+{% load url from future %}
+
+
+
+ <div class="row">
+  <div class="span12">
+    
+    <h1>{{ jam.title }}</h1>
+     <p>
+    <h2><small>a game jam</small></h2>
+    </p>
+  </div>
+  </div>
+  <div class="row">
+<div class="span9">
+    
+ 
+    <div>
+    <img src="http://placehold.it/600x400" alt="{{ jam.title }}" class="full-width img-rounded"/>
+
+
+    </div>
+
+   <div class="margin10">
+
+     <a href="https://twitter.com/share" class="twitter-share-button" data-text="Amazing games from {{jam.tile}} here {{ request.build_absolute_uri }} "  data-via="unicorn7ish">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="120"></div>
+
+ <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-send="false"  data-show-faces="false" data-width="100" style="width:100px;"></div>
+
+   </div>
+
+    <div class="well">
+      <h3>About the event</h3>
+      {% oembed %}
+      <p>{{ jam.long_description|linebreaksbr }}</p>
+      {% endoembed %}
+   </div>
+
+
+    <div class="span9">
+    
+    {%if search%}<p class="text-info"> Results for: {{search}} </p>{%endif%}
+
+            <ul class="thumbnails">
+              
+
+              {% for game in games %}
+         
+                {% showgamethumbnail game  %}
+               
+              {% endfor %}
+
+
+ </ul>
+            <div class="pagination pagination-centered">
+                <ul >
+                   {% if games.has_previous %}
+                    <li><a href="?page={{ games.previous_page_number }}">Previous</a></li>
+  
+                 {% endif %}
+                 
+                 {% for i in games.paginator.page_range %}
+                  {% if games.paginator.num_pages < 10 or i == 1 or i == games.paginator.num_pages or  i >= games.number|add:-3 and i < games.number|add:3 %}
+                 <li class="{%if games.number == i%} active {% else %} inactive {% endif%}"><a href="?page={{ i }}">{{i}}</a></li>
+                 {% endif %}
+                  {% endfor %}
+                  
+                 {% if games.has_next %}
+            
+             <li><a href="?page={{ games.next_page_number }}">Next</a></li>
+        {% endif %}
+               
+               </ul>
+            </div>
+
+
+ </div>
+    
+</div>
+
+<div class="span3">
+    
+      {% if showAdminOptions %}
+          <div class="well" >
+
+     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#">Feature game</a></li>
+       </ul>
+     </div>
+
+ {% endif %}
+
+  {% if showEditOptions %}
+          <div class="well" >
+
+     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#">Edit jam</a></li>
+       </ul>
+     </div>
+
+ {% endif %}
+ 
+
+
+</div>
+</div>
+
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+{% block late_js %}
+
+{% endblock %}

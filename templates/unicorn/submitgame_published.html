@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load oembed_tags %}
+
+{% block content %}
+{% load url from future %}
+
+ <div class="row">
+  <div class="span12">
+    
+    
+    <h1>Bam! It's done!</h1>
+     <p>
+    <h2><small>You are now a unicorn!</small></h2>
+    </p>
+  </div>
+  </div>
+  <div class="row">
+
+
+
+<div class="span12">
+    <div class="well">
+         <h3>Wooohooo!!</h3>
+     
+      <p>
+        Woohooo!! <br/>
+        The game <strong>{{game.title}}</strong> was submitted to the unicorn7 database!
+        {%if game.jam%}
+        <br/> It was made at {{game.jam.title}}.
+        {%endif%} 
+
+<br/><br/>
+        View your game here: <br/><a href="{% url 'games.views.showgame' id=game.id %}" class="btn btn-large btn-primary">Go to game!</a>
+<br/>
+
+      </p>
+
+  </div>
+  </div>
+    
+</div>
+
+
+
+
+{% endblock %}

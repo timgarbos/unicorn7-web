@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load oembed_tags %}
+
+{% block content %}
+{% load url from future %}
+{% load navigation %}
+
+
+ <div class="row">
+  <div class="span12">
+    
+    <h1>Submit new game</h1>
+     <p>
+    <h2><small>{%if jam%} You are submitting a game for {{jam.title}} {%else%}Uuuh! more games!{%endif%}</small></h2>
+    </p>
+  </div>
+  </div>
+  <div class="row">
+
+
+
+    <div class="span2">
+
+    
+  <div class="well" >
+      <ul class="nav nav-pills  nav-stacked">
+
+      <li class="{% navactive topnav 'submitgamebasic' %}"><a>Basic info</a></li>
+      <li class="{% navactive topnav 'submitgameplatforms' %}"><a>Platforms</a></li>
+      <li class="{% navactive topnav 'submitgamecategories' %}"><a>Categories</a></li>
+      <li class="{% navactive topnav 'submitgamecontact' %}"><a>Contact</a></li>
+      <li class="{% navactive topnav 'submitgamepublish' %}"><a>Publish</a></li>
+
+    </ul>
+    
+</div>
+</div>
+
+<div class="span10">
+    
+
+  {% if error %}
+<div class="alert alert-error">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <p > <strong>Oh no! </strong> Something was not valid. This could be a small unicorn {%if errorMsg%}<br/> {{errorMsg}} {%endif%}</p>
+
+  </div>
+  {% elif success %}
+      <div class="alert alert-success">
+
+        <button type="button" class="close" data-dismiss="alert">×</button>
+  <p  ><strong>Great Job! </strong> The data was saved successfully! You can take a break and get a cup of coffe or something nice. </p>
+  </div>
+  {% endif %}
+
+
+
+    <div class="well">
+    {% block editContent %}
+    {% endblock %}
+
+  </div>
+    
+</div>
+
+
+
+</div>
+
+{% endblock %}

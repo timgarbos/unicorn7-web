@@ -1,0 +1,36 @@
+{% extends "unicorn/submitgame.html" %}
+{% load oembed_tags %}
+
+{% block editContent %}
+{% load url from future %}
+
+
+      <h3>Edit platforms and links</h3>
+      <p>These links will be showed on the games page for easy access to download/play the game on different platforms. It will also be possible to sort/search the games based on available platforms.
+      Just leave the fields empty to not include a platform<br/> If you host the game youself and provide a link we will not use the uploaded file.<br/>
+      Currently we have limited storage space and only accept files smaller than 40MB, so we recommend using file storage systems such as Get.tt, DropBox or similar.</p>
+
+<form action="{% url 'games.views.submitgameplatforms' id=game.id %}" method="post" enctype="multipart/form-data">
+ {% csrf_token %}
+ {% for link in links %}
+
+          <h4>{{link.platform.title}}</h4>
+           <label>URL to hosted file:</label>
+           <input id="{{link.platform.id}}" type="text" name="{{link.platform.id}}" maxlength="200" value="{{link.url}}">
+           
+           <label>Or upload file:</label>
+           {%if link.file%}
+           <p class="text-info"><small>Current file: <a href="{{link.file.url}}">{{link.file.name}}</a> ({% widthratio link.file.size 1000000 1 %}MB)</small></p>
+           {%endif%}
+           <input id="file_{{link.platform.id}}" type="file" name="file_{{link.platform.id}}" />
+       <br/><br/>
+
+   
+
+    {% endfor %}
+    <p>
+  <button type="submit" class="btn-primary">Save</button>
+</p>
+</form>
+
+{% endblock %}

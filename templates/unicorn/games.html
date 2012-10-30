@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load url from future %}
+{% load navigation %}
+
+<div class="row">
+<div class="span3">
+
+     <div class="sort-it"> </div>
+  <div class="well" >
+      <ul class="nav nav-pills  nav-stacked">
+        <li class="nav-header">Sorting</li>
+      	<li class="{%if sort == '0' %}active{%endif%}">
+          <a href="{% url 'games.views.listgames'%}?sorting=0{%if cat%}&category={{cat}}{%endif%}{%if plat%}&platform={{plat}}{%endif%}{%if search%}&search={{search}}{%endif%}">Latest</a></li>
+        <li class="{%if sort == '1' %}active{%endif%}">
+          <a href="{% url 'games.views.listgames'%}?sorting=1{%if cat%}&category={{cat}}{%endif%}{%if plat%}&platform={{plat}}{%endif%}{%if search%}&search={{search}}{%endif%}">Fun</a></li>
+        <li class="{%if sort == '2' %}active{%endif%}">
+          <a href="{% url 'games.views.listgames'%}?sorting=2{%if cat%}&category={{cat}}{%endif%}{%if plat%}&platform={{plat}}{%endif%}{%if search%}&search={{search}}{%endif%}">Novelty</a></li>
+        <li class="{%if sort == '3' %}active{%endif%}">
+          <a href="{% url 'games.views.listgames'%}?sorting=3{%if cat%}&category={{cat}}{%endif%}{%if plat%}&platform={{plat}}{%endif%}{%if search%}&search={{search}}{%endif%}">Humour</a></li>
+        <li class="{%if sort == '4' %}active{%endif%}">
+          <a href="{% url 'games.views.listgames'%}?sorting=4{%if cat%}&category={{cat}}{%endif%}{%if plat%}&platform={{plat}}{%endif%}{%if search%}&search={{search}}{%endif%}">Visuals</a></li>
+        <li class="{%if sort == '5' %}active{%endif%}">
+          <a href="{% url 'games.views.listgames'%}?sorting=5{%if cat%}&category={{cat}}{%endif%}{%if plat%}&platform={{plat}}{%endif%}{%if search%}&search={{search}}{%endif%}">Audio</a></li>
+
+    
+     <li class="nav-header">Category</li>
+      {% for category in categories %}
+        <li class="{%if cat == category.id|slugify %}active{%endif%}">
+          {%if cat == category.id|slugify %}
+          <a href="{% url 'games.views.listgames'%}?sorting={%if sort%}{{sort}}{%endif%}{%if plat%}&platform={{plat}}{%endif%}{%if search%}&search={{search}}{%endif%}">
+            {%else%}
+             <a href="{% url 'games.views.listgames'%}?sorting={%if sort%}{{sort}}{%endif%}&category={{category.id}}{%if plat%}&platform={{plat}}{%endif%}{%if search%}&search={{search}}{%endif%}">
+            {%endif%}
+            {{category.title}}</a></li>
+        {% endfor %}
+     <li class="nav-header">Platform</li>
+      {% for platform in platforms %}
+        <li class="{%if plat == platform.id|slugify %}active{%endif%}" >
+          {%if plat == platform.id|slugify %}
+          <a href="{% url 'games.views.listgames'%}?sorting={%if sort%}{{sort}}{%endif%}{%if cat%}&category={{cat}}{%endif%}{%if search%}&search={{search}}{%endif%}">
+          {%else%}
+          <a href="{% url 'games.views.listgames'%}?sorting={%if sort%}{{sort}}{%endif%}{%if cat%}&category={{cat}}{%endif%}&platform={{platform.id}}{%if search%}&search={{search}}{%endif%}">
+          {%endif%}
+          {{platform.title}}</a></li>
+        {% endfor %}
+    </ul>
+    
+</div>
+</div>
+  <div class="span9">
+    
+    {%if search%}<p class="text-info"> Results for: {{search}} </p>{%endif%}
+
+            <ul class="thumbnails">
+              
+
+              {% for game in games %}
+         
+                {% showgamethumbnail game  %}
+               
+              {% endfor %}
+
+
+ </ul>
+            <div class="pagination pagination-centered">
+                <ul >
+                   {% if games.has_previous %}
+                    <li><a href="?page={{ games.previous_page_number }}">Previous</a></li>
+  
+                 {% endif %}
+                 
+                 {% for i in games.paginator.page_range %}
+                  {% if games.paginator.num_pages < 10 or i == 1 or i == games.paginator.num_pages or  i >= games.number|add:-3 and i < games.number|add:3 %}
+                 <li class="{%if games.number == i%} active {% else %} inactive {% endif%}"><a href="?page={{ i }}">{{i}}</a></li>
+                 {% endif %}
+                  {% endfor %}
+                  
+                 {% if games.has_next %}
+            
+             <li><a href="?page={{ games.next_page_number }}">Next</a></li>
+        {% endif %}
+               
+               </ul>
+            </div>
+
+
+ </div>
+ 
+
+</div>
+
+
+
+
+{% endblock %}

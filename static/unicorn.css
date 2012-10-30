@@ -1,0 +1,197 @@
+
+h1,h2,h3,h4,h5, .hero-unit h1
+{
+	color:#2E9FF8;
+}
+.navbar-inverse .navbar-inner .brand, .navbar-inverse .nav > li > a , .navbar-search .search-query
+{
+color: #2E9FF8;
+
+}
+body
+{
+
+	background-image:url('img/subtle_dots.png');
+	margin-bottom: 0;
+
+	padding-bottom:0;
+	padding-left: 0;
+	padding-right: 0;
+}
+.thumbnail
+{
+	background-color: #f5f5f5;
+}
+.rating-header h4
+{
+	font-size: 14px;
+}
+.bgimage
+{
+	
+	background-image:url('footer.PNG');
+	height:100%;
+	min-height: 100%;
+	background-repeat:repeat-x;
+	background-attachment:scroll;
+	background-position:center bottom; 
+	margin:0;
+	padding:0;
+
+}
+.well h3, .well h4,.well h2, .well h5
+{
+	margin-top:0;
+
+}
+.well h3
+{
+	line-height: 30px;
+	
+}
+.well
+{
+	padding:10px;
+}
+footer
+{
+	position: absolute;
+	bottom:20px;
+	text-align:center;
+
+}
+footer p
+{
+
+
+}
+
+html, body {
+	height: 100%;
+}
+.bgimage {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -80px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.play-it
+{
+	background-image:url('hest2.PNG');
+	width:60px;
+	height:87px;
+	background-position:center bottom; 
+	margin-bottom:-5px;
+	margin-top:-60px;
+	margin-left:20px;
+
+}
+
+.sort-it
+{
+	background-image:url('hest3.PNG');
+	width:60px;
+	height:99px;
+	background-position:center bottom; 
+	margin-bottom:-15px;
+	margin-top:-10px;
+	margin-left:70px;
+
+
+}
+
+.full-width
+{
+	width:100%;
+}
+.thumbnail .caption h5, .thumbnail .caption p
+{
+	overflow:hidden;
+}
+.thumbnail .caption h5
+{
+	margin-top:0;
+}
+.thumbnail p
+{
+	margin-bottom:0;
+}
+.margin10
+{
+	margin-top:10px;
+	margin-bottom: 10px;
+}
+.well-error
+{
+	background-color: #B94A48;
+}
+.well-success
+{
+	background-color: #468847;
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 50px;
+}
+form input,form textarea,form select
+{
+	width:88%;
+}
+.no-decoration, .no-decoration:hover
+{
+	text-decoration: none;
+}
+
+.game-list-item
+{
+
+		width:230px;
+}
+
+.gameslist
+{
+	max-width: 920px;
+}
+
+.mainmenu-item
+{
+	font-size:2em;
+	margin-bottom:0.75em;
+	background-color:#E6EFF2;
+	text-align:center;
+	padding:5px;
+}
+
+.topmenu-item
+{
+	font-size:1.5em;
+	margin-bottom:0.25em;
+	background-color:#E6EFF2;
+	text-align:center;
+	padding:3px;
+}
+
+.list-none
+{
+	list-style-type:none; 
+	padding:0;
+	margin"0;
+}
+
+.left
+{
+	float:left;
+}
+
+.bg-grey
+{
+	background-color:#E6EFF2;
+
+}
+.container
+{
+	min-height: 100%;
+	height:100%;
+}

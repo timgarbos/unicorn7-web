@@ -1,0 +1,278 @@
+{% extends "base.html" %}
+{% load oembed_tags %}
+
+{% block extra_head %}
+<!-- include CSS & JS files -->
+<!-- CSS file -->
+<link rel="stylesheet" type="text/css" href="/static/js/rating/jRating.jquery.css" media="screen" />
+
+{% endblock %}
+
+
+
+{% block content %}
+{% load url from future %}
+
+
+
+ <div class="row">
+  <div class="span12">
+    
+    <h1>{{ game.title }}</h1>
+     <p>
+    <h2><small>submitted {{ game.pub_date|date:"M d, Y" }}</small></h2>
+    </p>
+  </div>
+  </div>
+  <div class="row">
+<div class="span8">
+    
+ 
+    <div>
+    <img src="http://placehold.it/600x400" alt="{{ game.title }}" class="full-width img-rounded"/>
+
+
+    </div>
+
+   <div class="margin10">
+
+     <a href="https://twitter.com/share" class="twitter-share-button" data-text="Found something that's worth playing {{ request.build_absolute_uri }} "  data-via="unicorn7ish">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="120"></div>
+
+ <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-send="false"  data-show-faces="false" data-width="100" style="width:100px;"></div>
+
+   </div>
+
+    <div class="well">
+      <h3>About the game</h3>
+      {% oembed %}
+      <p>{{ game.long_description|linebreaksbr }}</p>
+      {% endoembed %}
+   </div>
+
+{% if game.short_credits and game.short_credits.strip %}
+  <div class="well">
+      <h3>Credits</h3>
+      {% oembed %}
+      <p>{{ game.short_credits|linebreaksbr }}</p>
+      {% endoembed %}
+      <ul>
+      	{#% url profile u.id %#}
+      </ul>
+  </div>
+  {% endif %}
+
+
+    <div class="well">
+              <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'unicorn7ish'; 
+            var disqus_developer = 1;
+            var disqus_url = '{{request.path}}';
+            var disqus_identifier = '{{game.id}}';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+  </div>
+    
+</div>
+
+<div class="span4">
+    
+      {% if showAdminOptions %}
+          <div class="well" >
+
+     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#">Feature game</a></li>
+       </ul>
+     </div>
+
+ {% endif %}
+
+  {% if showEditOptions %}
+          <div class="well" >
+
+     <ul class="nav nav-pills nav-stacked">
+      <li><a href="{% url 'games.views.editgamebasic' id=game.id %}">Edit game</a></li>
+       </ul>
+     </div>
+
+ {% endif %}
+ 
+     <div class="play-it"> </div>
+      <div class="well" >
+<h4>Play it</h4>
+     <ul class="nav nav-pills nav-stacked">
+       
+       {% for plat in platforms %}
+        <li><a href="{{plat.url}}">{{plat.platform}}</a></li>
+
+      {% endfor %}
+    
+    
+       </ul>
+     </div>
+     <div class="well" >
+      <ul class="nav nav-pills nav-stacked">
+    
+
+    <li class="nav-header rating-header"><h4>Fun:</h4></li>
+    <li> 
+      <div class="rating rating_fun" id="{{game.rating_fun.score}}_{{game.id}}_0"></div>
+    </li>
+
+    <li class="nav-header rating-header"><h4>Novelty:</h4></li>
+    <li> 
+      <div class="rating rating_novelty" id="{{game.rating_novelty.score}}_{{game.id}}_1"></div>
+    </li>
+
+    <li class="nav-header rating-header"><h4>Humour:</h4></li>
+    <li> 
+      <div class="rating rating_humour" id="{{game.rating_humour.score}}_{{game.id}}_2"></div>
+    </li>
+
+    <li class="nav-header rating-header"><h4>Visuals:</h4></li>
+    <li> 
+      <div class="rating rating_visuals" id="{{game.rating_visuals.score}}_{{game.id}}_3"></div>
+    </li>
+
+    <li class="nav-header rating-header"><h4>Audio:</h4></li>
+    <li> 
+      <div class="rating rating_audio" id="{{game.rating_audio.score}}_{{game.id}}_4"></div>
+      </li>
+      <li>
+      
+    </li>
+
+
+      </ul>
+
+
+
+</div>
+
+<div class="well" >
+<h4>Categories</h4>
+<ul class="nav nav-pills  nav-stacked">
+    
+      {% for cat in game.categories.all %}
+        <li><a href="#">{{cat.title}}</a></li>
+      {% endfor %}
+      </ul>
+  </div>
+
+
+
+
+
+
+<div class="well" >
+<h4>Team info</h4>
+<ul class="nav nav-pills  nav-stacked">
+     
+      
+        {% if game.developer_url and game.developer_url.strip %}
+        <li><a href="{{game.developer_url}}">Developer</a></li>
+        {% endif %}
+
+        {% if game.email and game.email.strip %}
+        <li><a href="mailto://{{game.email}}">Email</a></li>
+        {% endif %}
+
+        {% if game.twitter and game.twitter.strip %}
+        <li><a href="https://twitter.com/{{game.twitter}}">Twitter</a></li>
+        {% endif %}
+
+        {% if game.facebook_page and game.facebook_page.strip %}
+        <li><a href="{{game.facebook_page}}">Facebook</a></li>
+        {% endif %}
+      </ul>
+  </div>
+
+
+</div>
+</div>
+
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+{% block late_js %}
+<script type="text/javascript" src="/static/js/rating/jRating.jquery.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+      $(".rating_fun").jRating({
+        phpPath:'{% url 'games.views.rategame' id=game.id type=0 %}',
+          type: 'big',
+          bigStarsPath:'/static/js/rating/icons/heart3.PNG',
+         step:true,
+         length : 5, // nb of stars
+         rateMax:5,
+         showRateInfo:false,
+   
+   });
+            $(".rating_novelty").jRating({
+        phpPath:'{% url 'games.views.rategame' id=game.id type=1 %}',
+          type: 'big',
+          bigStarsPath:'/static/js/rating/icons/heart3.PNG',
+         step:true,
+         length : 5, // nb of stars
+         rateMax:5,
+         showRateInfo:false,
+   
+   });
+
+       $(".rating_humour").jRating({
+        phpPath:'{% url 'games.views.rategame' id=game.id type=2 %}',
+          type: 'big',
+          bigStarsPath:'/static/js/rating/icons/heart3.PNG',
+         step:true,
+         length : 5, // nb of stars
+         rateMax:5,
+         showRateInfo:false,
+   
+   });
+
+      $(".rating_visuals").jRating({
+        phpPath:'{% url 'games.views.rategame' id=game.id type=3 %}',
+          type: 'big',
+          bigStarsPath:'/static/js/rating/icons/heart3.PNG',
+         step:true,
+         length : 5, // nb of stars
+         rateMax:5,
+         showRateInfo:false,
+   
+   });
+
+      $(".rating_audio").jRating({
+        phpPath:'{% url 'games.views.rategame' id=game.id type=4 %}',
+          type: 'big',
+          bigStarsPath:'/static/js/rating/icons/heart3.PNG',
+         step:true,
+         length : 5, // nb of stars
+         rateMax:5,
+         showRateInfo:false,
+   
+   });
+
+
+});
+</script>
+{% endblock %}

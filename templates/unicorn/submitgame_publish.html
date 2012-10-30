@@ -1,0 +1,26 @@
+{% extends "unicorn/submitgame.html" %}
+{% load oembed_tags %}
+
+{% block editContent %}
+{% load url from future %}
+
+
+
+      <h3>Submit the game</h3>
+      <p>
+        Are you ready? (You can always edit the inforamtion later or remove the game)
+      </p>
+
+<form action="{% url 'games.views.submitgamepublish' id=game.id %}" method="post">
+
+ {% csrf_token %}
+
+
+
+    <p>
+  <button type="submit" class="btn-primary">Publish game!</button>
+</p>
+</form>
+
+
+{% endblock %}

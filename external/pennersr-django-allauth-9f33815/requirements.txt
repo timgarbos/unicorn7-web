@@ -1,0 +1,4 @@
+django>=1.4
+oauth2
+python-openid
+

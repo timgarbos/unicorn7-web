@@ -1,4 +1,4 @@
-unicorn7-web
-============
+unicorn7
+========
 
-bah
+web for unicorn7 prototype. Django, html, javascript.

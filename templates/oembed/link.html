@@ -1,0 +1,5 @@
+{% load oembed_tags %}
+<div class="oembed-link">
+    <div class="oembed-link-object">{{ response.html|safe }}</div>
+    <div class="oembed-link-url"><a href="{{ match }}">{% if response.title %}{{ response.title }}{% else %}{{ match }}{% endif %}</a></div>
+</div>

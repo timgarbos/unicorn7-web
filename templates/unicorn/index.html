@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load navigation %}
+
+
+{% block content %}
+
+<div class="row">
+	 <div class="span10">
+  <div class="hero-unit">
+    <h1>How to Unicorn?</h1>
+    <p>Some catchy text convincing people to turn into unicorns. Being a unicorn is great!
+      <br/>
+      <a class="btn btn-primary btn-large clearfix">Teach me how&raquo;</a></p>
+
+  </div>
+</div>
+</div>
+
+
+ 
+<div class="row">
+    <div class="span10">
+            <ul class="thumbnails">
+              
+
+              {% for game in games %}
+         
+                {% showgamethumbnail game  %}
+               
+              {% endfor %}
+
+
+ </ul>
+    
+    </div>
+</div>
+
+
+{% endblock %}

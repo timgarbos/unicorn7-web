@@ -1,0 +1,33 @@
+{% extends "unicorn/editgame.html" %}
+{% load oembed_tags %}
+
+{% block editContent %}
+{% load url from future %}
+
+
+      <h3>Edit description</h3>
+
+
+<form action="/test/" method="post">
+
+ 
+ {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+
+    {% for field in form.visible_fields %}
+    
+         {{ field.label_tag }}
+          
+            <p class="text-error">{{ field.errorslist}}</p>
+             
+             {{ field }}
+        <span class="help-block muted"><small>{{ field.help_text }}</small></span>
+
+    {% endfor %}
+    <p>
+  <button type="submit" class="btn-primary">Save</button>
+</p>
+</form>
+
+{% endblock %}

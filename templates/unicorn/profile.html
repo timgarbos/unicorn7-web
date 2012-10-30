@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load oembed_tags %}
+{% load navigation %}
+{% block extra_head %}
+<!-- include CSS & JS files -->
+<!-- CSS file -->
+<link rel="stylesheet" type="text/css" href="/static/js/rating/jRating.jquery.css" media="screen" />
+
+{% endblock %}
+
+
+
+{% block content %}
+{% load url from future %}
+
+
+
+ <div class="row">
+  <div class="span12">
+    
+    <h1>{{ user.username }}</h1>
+     <p>
+    <h2><small>all submitted games</small></h2>
+    </p>
+  </div>
+  </div>
+  <div class="row">
+<div class="span9">
+    
+ 
+
+    
+
+            <ul class="thumbnails">
+              
+
+              {% for game in games %}
+         
+                {% showgamethumbnail game  %}
+               
+              {% endfor %}
+
+
+ </ul>
+            <div class="pagination pagination-centered">
+                <ul >
+                   {% if games.has_previous %}
+                    <li><a href="?page={{ games.previous_page_number }}">Previous</a></li>
+  
+                 {% endif %}
+                 
+                 {% for i in games.paginator.page_range %}
+                  {% if games.paginator.num_pages < 10 or i == 1 or i == games.paginator.num_pages or  i >= games.number|add:-3 and i < games.number|add:3 %}
+                 <li class="{%if games.number == i%} active {% else %} inactive {% endif%}"><a href="?page={{ i }}">{{i}}</a></li>
+                 {% endif %}
+                  {% endfor %}
+                  
+                 {% if games.has_next %}
+            
+             <li><a href="?page={{ games.next_page_number }}">Next</a></li>
+        {% endif %}
+               
+               </ul>
+            </div>
+
+
+ </div>
+    
+</div>
+
+<div class="span3">
+    
+      {% if showAdminOptions %}
+          <div class="well" >
+
+     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#">Feature game</a></li>
+       </ul>
+     </div>
+
+ {% endif %}
+
+  {% if showEditOptions %}
+          <div class="well" >
+
+     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#">Edit jam</a></li>
+       </ul>
+     </div>
+
+ {% endif %}
+ 
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+{% block late_js %}
+
+{% endblock %}
