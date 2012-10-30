@@ -153,7 +153,7 @@ def submitgameplatforms(request,id="-1"):
 		return render_to_response('unicorn/gamesdoesnotexist.html')
 	if request.user.is_authenticated():
 		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
-			return HttpResponseRedirect(reverse('allauth.views.login', kwargs={'id': game.id}))
+			return HttpResponseRedirect(reverse('allauth.views.login'))
 
 	if request.method == 'POST': 
 		
@@ -207,7 +207,7 @@ def submitgamecategories(request,id="-1"):
 		return render_to_response('unicorn/gamesdoesnotexist.html')
 	if request.user.is_authenticated():
 		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
-			return HttpResponseRedirect(reverse('allauth.views.login', kwargs={'id': game.id}))
+			return HttpResponseRedirect(reverse('allauth.views.login'))
 	
 	if request.method == 'POST': 
 		game.categories.clear()
@@ -239,7 +239,7 @@ def submitgamecontact(request,id="-1"):
 		return render_to_response('unicorn/gamesdoesnotexist.html',)
 	if request.user.is_authenticated():
 		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
-			return HttpResponseRedirect(reverse('allauth.views.login', kwargs={'id': game.id}))
+			return HttpResponseRedirect(reverse('allauth.views.login'))
 
 	if request.method == 'POST': 
 		form = ContactForm(request.POST,instance = game) 
@@ -265,7 +265,7 @@ def submitgamepublish(request,id="-1"):
 		return render_to_response('unicorn/gamesdoesnotexist.html',)
 	if request.user.is_authenticated():
 		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
-			return HttpResponseRedirect(reverse('allauth.views.login', kwargs={'id': game.id}))
+			return HttpResponseRedirect(reverse('allauth.views.login'))
 
 	if request.method == 'POST': 
 			context['success'] = True 
@@ -289,7 +289,7 @@ def submitgamepublished(request,id="-1"):
 		return render_to_response('unicorn/gamesdoesnotexist.html',)
 	if request.user.is_authenticated():
 		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
-			return HttpResponseRedirect(reverse('allauth.views.login', kwargs={'id': game.id}))
+			return HttpResponseRedirect(reverse('allauth.views.login'))
 
 	context['game'] = game;
 	return render_to_response('unicorn/submitgame_published.html', context,context_instance=RequestContext(request))
@@ -320,7 +320,7 @@ def editgamebasic(request,id="-1"):
 
 	if request.user.is_authenticated():
 		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
-			return HttpResponseRedirect(reverse('allauth.views.login', kwargs={'id': game.id}))
+			return HttpResponseRedirect(reverse('allauth.views.login'))
 
 	if request.method == 'POST': 
 		form = GameForm(request.POST,instance = game) 
@@ -347,7 +347,7 @@ def editgamecontact(request,id="-1"):
 		return render_to_response('unicorn/gamesdoesnotexist.html',)
 	if request.user.is_authenticated():
 		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
-			return HttpResponseRedirect(reverse('allauth.views.login', kwargs={'id': game.id}))
+			return HttpResponseRedirect(reverse('allauth.views.login'))
 
 	if request.method == 'POST': 
 		form = ContactForm(request.POST,instance = game) 
@@ -372,7 +372,7 @@ def editgameplatforms(request,id="-1"):
 		return render_to_response('unicorn/gamesdoesnotexist.html')
 	if request.user.is_authenticated():
 		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
-			return HttpResponseRedirect(reverse('allauth.views.login', kwargs={'id': game.id}))
+			return HttpResponseRedirect(reverse('allauth.views.login'))
 
 	if request.method == 'POST': 
 		
@@ -425,7 +425,7 @@ def editgamecategories(request,id="-1"):
 		return render_to_response('unicorn/gamesdoesnotexist.html')
 	if request.user.is_authenticated():
 		if (game.users.filter(id = request.user.id)[:1]) or (request.user.is_admin):
-			return HttpResponseRedirect(reverse('allauth.views.login', kwargs={'id': game.id}))
+			return HttpResponseRedirect(reverse('allauth.views.login'))
 	
 	if request.method == 'POST': 
 		game.categories.clear()
