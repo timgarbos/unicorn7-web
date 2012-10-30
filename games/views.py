@@ -33,7 +33,7 @@ def showjam(request,id):
 		# If page is out of range (e.g. 9999), deliver last page of results.
 		games = paginator.page(paginator.num_pages)
 	
-	return render_to_response('unicorn/showjam.html', {'topnav':'showjam','games':games,'jam':jam})
+	return render_to_response('unicorn/showjam.html', {'topnav':'showjam','games':games,'jam':jam},context_instance=RequestContext(request))
   
 
 def profile(request,id=None):
@@ -57,7 +57,7 @@ def profile(request,id=None):
 		# If page is out of range (e.g. 9999), deliver last page of results.
 		games = paginator.page(paginator.num_pages)
 	
-	return render_to_response('unicorn/profile.html', {'topnav':'showjam','games':games,'user':user})
+	return render_to_response('unicorn/profile.html', {'topnav':'showjam','games':games,'user':user},context_instance=RequestContext(request))
   
 
 
@@ -111,7 +111,7 @@ def listgames(request):
 		games = paginator.page(paginator.num_pages)
 	categories = GameCategory.objects.all()
 	platforms = GamePlatform.objects.all()
-	return render_to_response('unicorn/games.html', {'topnav':'listgames','games':games,'categories':categories,'platforms':platforms,'cat':category,'sort':sorting,'plat':platform,'search':search})
+	return render_to_response('unicorn/games.html', {'topnav':'listgames','games':games,'categories':categories,'platforms':platforms,'cat':category,'sort':sorting,'plat':platform,'search':search},context_instance=RequestContext(request))
   
 @login_required  
 @csrf_protect
