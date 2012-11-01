@@ -288,7 +288,7 @@ def submitgamemedia(request,id="-1"):
 			return HttpResponseRedirect(reverse('account_login'))
 
 	if request.method == 'POST': 
-		
+		something = None
 	else:
 		#for all images
 		imgs = GameImage.objects.all().filter(game=game)
