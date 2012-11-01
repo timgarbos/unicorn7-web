@@ -471,7 +471,7 @@ def editgamecategories(request,id="-1"):
 
 @login_required  
 def editgamemedia(request,id="-1"):
-	
+	something = None
 
 def rategame(request,id="-1",type="-1"):
 
