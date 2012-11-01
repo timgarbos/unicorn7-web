@@ -81,7 +81,7 @@ class Game(models.Model):
         # add default links
 
         return game
-
+ 
 
 
 class GamePlatformLink(models.Model):
