@@ -101,7 +101,7 @@ class FrontpagePeriod(models.Model):
 class GameImage(models.Model):
     game = models.ForeignKey(Game)
     caption = models.CharField(max_length=200,blank=True)
-    image = models.ImageField('upload_to'='images')
+    image = models.ImageField(upload_to='images')
 
     def __unicode__(self):
         return self.caption
