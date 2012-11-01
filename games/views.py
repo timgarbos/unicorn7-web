@@ -2,7 +2,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from games.models import Game, GameForm,GamePlatform,GameCategory,GamePlatformLink,ContactForm,GameSubmitForm,GameJam
+from games.models import Game, GameForm,GamePlatform,GameCategory,GamePlatformLink,ContactForm,GameSubmitForm,GameJam,GameImage,ImageForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms.models import modelformset_factory
 from django.views.decorators.csrf import csrf_protect
@@ -278,7 +278,29 @@ def submitgamepublish(request,id="-1"):
 @login_required  
 @csrf_protect
 def submitgamemedia(request,id="-1"):
-	return render_to_response('unicorn/submitgame_categories.html', )
+	context = {'topnav':'submitgamemedia'}
+	try:
+		game = Game.objects.get(id=id)
+	except Game.DoesNotExist:
+		return render_to_response('unicorn/gamesdoesnotexist.html',)
+	if request.user.is_authenticated():
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_staff)):
+			return HttpResponseRedirect(reverse('account_login'))
+
+	if request.method == 'POST': 
+		
+	else:
+		#for all images
+		imgs = GameImage.objects.all().filter(game=game)
+		forms = []
+		for img in imgs:
+			forms.append(ImageForm(instance=img))
+		while len(forms)<=5:
+			forms.append(ImageForm())
+
+	context['forms'] = forms;
+	context['game'] = game;
+	return render_to_response('unicorn/submitgame_media.html', context,context_instance=RequestContext(request))
 
 @login_required  
 def submitgamepublished(request,id="-1"):

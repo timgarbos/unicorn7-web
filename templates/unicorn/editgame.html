@@ -26,6 +26,7 @@
       <ul class="nav nav-pills  nav-stacked">
 
       <li class="{% navactive topnav 'editgamebasic' %}"><a href="{% url 'games.views.editgamebasic' id=game.id %}">Basic info</a></li>
+      <li class="{% navactive topnav 'editgamemedia' %}"><a href="{% url 'games.views.editgamemedia' id=game.id %}">Media</a></li>
       <li class="{% navactive topnav 'editgameplatforms' %}"><a href="{% url 'games.views.editgameplatforms' id=game.id %}">Platforms</a></li>
       <li class="{% navactive topnav 'editgamecategories' %}"><a href="{% url 'games.views.editgamecategories' id=game.id %}">Categories</a></li>
       <li class="{% navactive topnav 'editgamecontact' %}"><a href="{% url 'games.views.editgamecontact' id=game.id %}">Contact</a></li>

@@ -1,0 +1,23 @@
+{% extends "unicorn/editgame.html" %}
+{% load oembed_tags %}
+
+{% block editContent %}
+{% load url from future %}
+
+
+      <h3>Edit media</h3>
+      <p>Edit media. <br/><br/></p>
+
+<form action="{% url 'games.views.submitgamemedia' id=game.id %}" method="post">
+{% csrf_token %}
+ {% for form in forms %}
+ {{form}}
+
+    {% endfor %}
+    <br/>
+    <p>
+  <button type="submit" class="btn-primary">Next</button>
+</p>
+</form>
+
+{% endblock %}

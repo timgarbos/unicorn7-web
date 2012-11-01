@@ -100,8 +100,8 @@ class FrontpagePeriod(models.Model):
 
 class GameImage(models.Model):
     game = models.ForeignKey(Game)
-    caption = models.CharField(max_length=200)
-    #image = models.ImageField('upload_to'='uploads')
+    caption = models.CharField(max_length=200,blank=True)
+    image = models.ImageField('upload_to'='images')
 
     def __unicode__(self):
         return self.caption
@@ -121,4 +121,8 @@ class ContactForm(ModelForm):
     class Meta:
         model = Game
         fields = ('email','twitter','developer_url','facebook_page')
+
+class ImageForm(ModelForm):
+    class Meta:
+        model = GameImage
 
