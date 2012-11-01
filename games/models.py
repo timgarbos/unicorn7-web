@@ -125,4 +125,4 @@ class ContactForm(ModelForm):
 class ImageForm(ModelForm):
     class Meta:
         model = GameImage
-
+        exclude = ('caption')
