@@ -127,7 +127,7 @@ def submitgamebasic(request,jam=None):
 			form.instance.users.add(request.user)
 			form.instance.save()
 			context['success'] = True
-			return HttpResponseRedirect(reverse('games.views.submitgameplatforms', kwargs={'id': game.id}))
+			return HttpResponseRedirect(reverse('games.views.submitgamemedia', kwargs={'id': game.id}))
 		else:
 			context['error'] = True 
 	else:
@@ -471,20 +471,7 @@ def editgamecategories(request,id="-1"):
 
 @login_required  
 def editgamemedia(request,id="-1"):
-	try:
-		game = Game.objects.get(id=id)
-	except Game.DoesNotExist:
-		return render_to_response('unicorn/gamesdoesnotexist.html')
-
-	cats = []
-	for category in GameCategory.objects.all():
-		has = False
-		for c in game.categories:
-			if(c.id == category.id):
-				has = True
-		cats.append({'category':category,'has':has})
-
-	return render_to_response('unicorn/editgame_categories.html', {'topnav':'editgamemedia','game':game,'categories':cats})
+	
 
 def rategame(request,id="-1",type="-1"):
 
