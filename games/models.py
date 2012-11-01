@@ -96,7 +96,7 @@ class FrontpagePeriod(models.Model):
     game = models.ForeignKey(Game)
     start_date = models.DateTimeField('start of period')
     end_date = models.DateTimeField('end of period')
-
+ 
 
 class GameImage(models.Model):
     game = models.ForeignKey(Game)
