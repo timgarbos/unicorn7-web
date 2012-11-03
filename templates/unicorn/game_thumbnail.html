@@ -3,7 +3,7 @@
   <li class="game-list-item pull-left">
     <a href="{{url}}" class="no-decoration">
     <div class="thumbnail">
-      <img src="{%if game.primary_image%}{{%game.primary_image.url%}}{%endif%}" alt="" class="img-rounded">
+      <img src="{%if game.primary_image%}{{game.primary_image.url}}{%endif%}" alt="" class="img-rounded">
       <div class="caption">
         <h5>{{ game.title }}</h5>
         <p><small>{{ game.short_description|truncatechars:140 }}</small></p>
