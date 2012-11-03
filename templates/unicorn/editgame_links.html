@@ -10,7 +10,7 @@
       Just leave the fields empty to not include a platform<br/> If you host the game youself and provide a link we will not use the uploaded file.<br/>
       Currently we have limited storage space and only accept files smaller than 40MB, so we recommend using file storage systems such as Get.tt, DropBox or similar.</p>
 
-<form action="{% url 'games.views.editgameplatforms' id=game.id %}" method="post" enctype="multipart/form-data">
+<form action="{% url 'games.views.editgameplatforms' id=game.id %}" method="post" enctype="multipart/form-data" id="imageform">
  {% csrf_token %}
  {% for link in links %}
 
