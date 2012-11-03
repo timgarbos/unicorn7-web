@@ -130,5 +130,5 @@ class ContactForm(ModelForm):
 class ImageForm(ModelForm):
     class Meta:
         model = Game
-        fields = ('primary_image')
+        fields = ('primary_image',)
 
