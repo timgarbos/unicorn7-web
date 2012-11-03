@@ -111,7 +111,7 @@
      <ul class="nav nav-pills nav-stacked">
        
        {% for plat in platforms %}
-        <li><a href="{%if plat.file%}{{%plat.file.url%}}{%else%}{{plat.url}}{%endif%}">{{plat.platform}}</a></li>
+        <li><a href="{%if plat.file%}{{plat.file.url}}{%else%}{{plat.url}}{%endif%}">{{plat.platform}}</a></li>
 
       {% endfor %}
     
