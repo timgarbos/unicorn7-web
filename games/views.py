@@ -289,7 +289,7 @@ def submitgamemedia(request,id="-1"):
 			return HttpResponseRedirect(reverse('account_login'))
 
 	if request.method == 'POST': 
-		form = ImageForm(request.POST,instance = game) 
+		form = ImageForm(request.POST,request.FILES,instance = game) 
 		if form.is_valid():
 			form.save()
 			context['success'] = True 
@@ -481,7 +481,7 @@ def editgamemedia(request,id="-1"):
 			return HttpResponseRedirect(reverse('account_login'))
 
 	if request.method == 'POST': 
-		form = ImageForm(request.POST,instance = game) 
+		form = ImageForm(request.POST,request.FILES,instance = game) 
 		if form.is_valid():
 			form.save()
 			context['success'] = True 
