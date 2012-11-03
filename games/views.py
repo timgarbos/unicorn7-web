@@ -297,7 +297,7 @@ def submitgamemedia(request,id="-1"):
 		else:
 			context['error'] = True 
 	else:
-		form = ContactForm(instance=game)
+		form = ImageForm(instance=game)
 	context['form'] = form;
 	context['game'] = game;
 	return render_to_response('unicorn/submitgame_media.html', context,context_instance=RequestContext(request))
@@ -488,7 +488,7 @@ def editgamemedia(request,id="-1"):
 		else:
 			context['error'] = True 
 	else:
-		form = ContactForm(instance=game)
+		form = ImageForm(instance=game)
 	context['form'] = form;
 	context['game'] = game;
 	return render_to_response('unicorn/editgame_media.html', context,context_instance=RequestContext(request))
