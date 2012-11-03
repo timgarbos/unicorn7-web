@@ -8,7 +8,7 @@
       <h3>Edit media</h3>
       <p>Edit media. <br/><br/></p>
 
-<form action="{% url 'games.views.editgamemedia' id=game.id %}" method="post">
+<form action="{% url 'games.views.editgamemedia' id=game.id %}" method="post"  enctype="multipart/form-data">
 {% csrf_token %}
  {{form}}
 
