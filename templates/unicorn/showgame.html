@@ -27,7 +27,7 @@
   <div class="row">
 <div class="span8">
     <div>
-    <img src="{{game.primary_image.url}}" alt="{{ game.title }}" class="full-width img-rounded"/>
+    <img src="{%if game.primary_image%}{{%game.primary_image.url%}}{%endif%}" alt="{{ game.title }}" class="full-width img-rounded"/>
 
     </div>
 
@@ -111,7 +111,7 @@
      <ul class="nav nav-pills nav-stacked">
        
        {% for plat in platforms %}
-        <li><a href="{{plat.url}}">{{plat.platform}}</a></li>
+        <li><a href="{%if plat.file%}{{%plat.file.url%}}{%else%}{{plat.url}}{%endif%}">{{plat.platform}}</a></li>
 
       {% endfor %}
     
