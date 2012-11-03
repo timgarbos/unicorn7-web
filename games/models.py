@@ -115,12 +115,12 @@ class GameImage(models.Model):
 class GameForm(ModelForm):
     class Meta:
         model = Game
-        exclude = ('pub_date','users','categories','platforms','video','twitter','developer_url','facebook_page','email','jam','tags','primary_image','extra_image3','extra_image2','extra_image1')
+        exclude = ('pub_date','users','categories','platforms','video','twitter','developer_url','facebook_page','email','jam','tags','primary_image','extra_image3','extra_image2','extra_image1','extra_image')
 
 class GameSubmitForm(ModelForm):
     class Meta:
         model = Game
-        exclude = ('pub_date','users','categories','platforms','video','twitter','developer_url','status','facebook_page','email','jam','tags')
+        exclude = ('pub_date','users','categories','platforms','video','twitter','developer_url','status','facebook_page','email','jam','tags','primary_image','extra_image3','extra_image2','extra_image1','extra_image')
 
 class ContactForm(ModelForm):
     class Meta:
@@ -130,5 +130,5 @@ class ContactForm(ModelForm):
 class ImageForm(ModelForm):
     class Meta:
         model = Game
-        fields = ('primary_image','extra_image3','extra_image2','extra_image1')
+        fields = ('primary_image','extra_image3','extra_image2','extra_image1','extra_image')
 
