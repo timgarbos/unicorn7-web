@@ -275,6 +275,7 @@ def submitgamepublish(request,id="-1"):
 	context['game'] = game;
 	return render_to_response('unicorn/submitgame_publish.html', context,context_instance=RequestContext(request))
 
+
 @login_required  
 @csrf_protect
 def submitgamemedia(request,id="-1"):
@@ -288,17 +289,16 @@ def submitgamemedia(request,id="-1"):
 			return HttpResponseRedirect(reverse('account_login'))
 
 	if request.method == 'POST': 
-		something = None
+		form = ImageForm(request.POST,instance = game) 
+		if form.is_valid():
+			form.save()
+			context['success'] = True 
+			return HttpResponseRedirect(reverse('games.views.submitgameplatforms', kwargs={'id': game.id}))
+		else:
+			context['error'] = True 
 	else:
-		#for all images
-		imgs = GameImage.objects.all().filter(game=game)
-		forms = []
-		for img in imgs:
-			forms.append(ImageForm(instance=img))
-		while len(forms)<=5:
-			forms.append(ImageForm())
-
-	context['forms'] = forms;
+		form = ContactForm(instance=game)
+	context['form'] = form;
 	context['game'] = game;
 	return render_to_response('unicorn/submitgame_media.html', context,context_instance=RequestContext(request))
 
@@ -471,7 +471,27 @@ def editgamecategories(request,id="-1"):
 
 @login_required  
 def editgamemedia(request,id="-1"):
-	something = None
+	context = {'topnav':'editgamemedia'}
+	try:
+		game = Game.objects.get(id=id)
+	except Game.DoesNotExist:
+		return render_to_response('unicorn/gamesdoesnotexist.html',)
+	if request.user.is_authenticated():
+		if not ((game.users.filter(id = request.user.id)[:1]) or (request.user.is_staff)):
+			return HttpResponseRedirect(reverse('account_login'))
+
+	if request.method == 'POST': 
+		form = ContactForm(request.POST,instance = game) 
+		if form.is_valid():
+			form.save()
+			context['success'] = True 
+		else:
+			context['error'] = True 
+	else:
+		form = ContactForm(instance=game)
+	context['form'] = form;
+	context['game'] = game;
+	return render_to_response('unicorn/editgame_media.html', context,context_instance=RequestContext(request))
 
 def rategame(request,id="-1",type="-1"):
 

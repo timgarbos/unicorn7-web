@@ -69,6 +69,12 @@ class Game(models.Model):
 
     jam = models.ForeignKey(GameJam,null=True,blank=True)
 
+    primary_image = models.ImageField(upload_to='images',blank=True,null=True)
+    extra_image = models.ImageField(upload_to='images',blank=True,null=True)
+    extra_image1 = models.ImageField(upload_to='images',blank=True,null=True)
+    extra_image2 = models.ImageField(upload_to='images',blank=True,null=True)
+    extra_image3 = models.ImageField(upload_to='images',blank=True,null=True)
+
     def __unicode__(self):
         return self.title
 
@@ -99,9 +105,8 @@ class FrontpagePeriod(models.Model):
  
 
 class GameImage(models.Model):
-    game = models.ForeignKey(Game)
     caption = models.CharField(max_length=200,blank=True)
-    image = models.ImageField(upload_to='images')
+    image = models.ImageField(upload_to='images',blank=True,null=True)
 
     def __unicode__(self):
         return self.caption
@@ -110,7 +115,7 @@ class GameImage(models.Model):
 class GameForm(ModelForm):
     class Meta:
         model = Game
-        exclude = ('pub_date','users','categories','platforms','video','twitter','developer_url','facebook_page','email','jam','tags')
+        exclude = ('pub_date','users','categories','platforms','video','twitter','developer_url','facebook_page','email','jam','tags','primary_image','extra_image3','extra_image2','extra_image1')
 
 class GameSubmitForm(ModelForm):
     class Meta:
@@ -124,5 +129,6 @@ class ContactForm(ModelForm):
 
 class ImageForm(ModelForm):
     class Meta:
-        model = GameImage
-        exclude = ('caption')
+        model = Game
+        fields = ('primary_image','extra_image3','extra_image2','extra_image1')
+
