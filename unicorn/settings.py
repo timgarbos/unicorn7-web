@@ -168,6 +168,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.soundcloud',
     'allauth.socialaccount.providers.twitter',
     'django.core.paginator',
+    'sorl.thumbnail',
 )
 RATINGS_VOTES_PER_IP = 15
 AUTH_PROFILE_MODULE = 'userprofiles.UserProfile'

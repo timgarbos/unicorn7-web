@@ -3,7 +3,7 @@ from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from djangoratings.fields import RatingField
-from nesh.thumbnail.field import ImageWithThumbnailField
+from sorl.thumbnail import ImageField
 
 
 # Create your models here.
@@ -107,7 +107,7 @@ class FrontpagePeriod(models.Model):
 
 class GameImage(models.Model):
     caption = models.CharField(max_length=200,blank=True)
-    image = ImageWithThumbnailField(upload_to='images',blank=True,null=True)
+    image = ImageField(upload_to='images',blank=True,null=True)
 
     def __unicode__(self):
         return self.caption
