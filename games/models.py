@@ -1,4 +1,4 @@
-d from django.db import models
+from django.db import models
 from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 from django.forms import ModelForm
